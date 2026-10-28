@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COA-Ads-Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #2563eb;
+            --accent-soft: #eff6ff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --success: #059669;
+            --success-bg: #ecfdf5;
+            --warning: #d97706;
+            --warning-bg: #fffbeb;
+            --danger: #dc2626;
+            --danger-bg: #fef2f2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1160px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+            padding: 40px;
+        }
+
+        /* Header */
+        .report-header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .badge-entity {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .report-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-top: 4px;
+            letter-spacing: -0.3px;
+        }
+
+        .report-meta-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 25px;
+            margin-top: 15px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .meta-item strong {
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        /* KPI Section */
+        .section-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::before {
+            content: "";
+            width: 4px;
+            height: 18px;
+            background-color: var(--accent);
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .kpi-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 20px;
+            transition: all 0.2s ease;
+        }
+
+        .kpi-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+        }
+
+        .kpi-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .kpi-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Inter', 'Cairo', sans-serif;
+            direction: ltr;
+            text-align: right;
+        }
+
+        .kpi-caption {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Data Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 35px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: right;
+            background: #ffffff;
+        }
+
+        th {
+            background: #f8fafc;
+            color: #475569;
+            font-weight: 700;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 13px 16px;
+            border-bottom: 1px solid var(--border);
+            color: #334155;
+            vertical-align: middle;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .rank-badge {
+            width: 22px;
+            height: 22px;
+            background: #f1f5f9;
+            color: #475569;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            margin-left: 6px;
+        }
+
+        .rank-top {
+            background: #eff6ff;
+            color: var(--accent);
+            border: 1px solid #bfdbfe;
+        }
+
+        .c-name {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .c-set {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .num-cell {
+            font-family: 'Inter', 'Cairo', sans-serif;
+            font-weight: 600;
+        }
+
+        .cpr-best {
+            color: var(--success);
+            font-weight: 800;
+            background: var(--success-bg);
+            padding: 3px 8px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .cpr-high {
+            color: var(--danger);
+            font-weight: 800;
+            background: var(--danger-bg);
+            padding: 3px 8px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        /* Status Pills */
+        .pill {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .pill-success {
+            background: var(--success-bg);
+            color: var(--success);
+            border: 1px solid #a7f3d0;
+        }
+
+        .pill-active {
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+        }
+
+        .pill-muted {
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pill-warning {
+            background: var(--warning-bg);
+            color: var(--warning);
+            border: 1px solid #fde68a;
+        }
+
+        .pill-danger {
+            background: var(--danger-bg);
+            color: var(--danger);
+            border: 1px solid #fecaca;
+        }
+
+        /* Distribution Bars */
+        .distribution-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 35px;
+        }
+
+        .dist-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .dist-item {
+            margin-bottom: 14px;
+        }
+
+        .dist-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .dist-header span {
+            color: var(--text-muted);
+        }
+
+        .dist-header strong {
+            color: var(--primary);
+            font-family: 'Inter', 'Cairo', sans-serif;
+        }
+
+        .dist-bar-wrapper {
+            background: #e2e8f0;
+            border-radius: 6px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .dist-bar {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 6px;
+        }
+
+        /* Analysis Cards */
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .analysis-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .analysis-card.highlight {
+            border-color: #cbd5e1;
+            background: #fafafa;
+        }
+
+        .analysis-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .analysis-card-title span.tag {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 7px;
+            border-radius: 4px;
+        }
+
+        .analysis-text {
+            font-size: 12.5px;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        /* Action Plan */
+        .plan-box {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px;
+            background: #ffffff;
+        }
+
+        .plan-item {
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .plan-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .plan-item-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .plan-item-list {
+            padding-right: 18px;
+            font-size: 12.5px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .plan-item-list li {
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        .report-footer {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+                padding: 0;
+            }
+            .container {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .table-responsive {
+                overflow: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header class="report-header">
+        <div>
+            <div class="header-brand">
+                <span class="badge-entity">COMMUNITY OF ACCOUNTANTS</span>
+                <span style="font-size: 12px; color: var(--text-muted);">| تقرير الأداء الإعلاني المعتمد</span>
+            </div>
+            <h1 class="report-title">تقرير الأداء الشامل لحملات Meta Ads</h1>
+            <div class="report-meta-grid">
+                <div class="meta-item">
+                    <span>الفترة الزمنية:</span>
+                    <strong>1 سبتمبر 2026 – 28 أكتوبر 2026 (58 يوماً)</strong>
+                </div>
+                <div class="meta-item">
+                    <span>الصفحة الإعلانية:</span>
+                    <strong>Community of Accountants</strong>
+                </div>
+                <div class="meta-item">
+                    <span>الهدف الإعلاني:</span>
+                    <strong>بدء محادثات ورسائل (Messaging Conversations)</strong>
+                </div>
+                <div class="meta-item">
+                    <span>العملة:</span>
+                    <strong>الجنيه المصري (EGP)</strong>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Key Metrics Cards -->
+    <div class="section-label">المؤشرات الرئيسية للأداء (Executive KPIs)</div>
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-title">إجمالي الإنفاق</div>
+            <div class="kpi-value">9,735.94 <span style="font-size:12px; font-weight:600;">ج.م</span></div>
+            <div class="kpi-caption">عبر 8 حملات تسويقية</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">إجمالي الرسائل المحققة</div>
+            <div class="kpi-value">656</div>
+            <div class="kpi-caption">محادثة شراء واستفسار</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">متوسط تكلفة الرسالة (CPR)</div>
+            <div class="kpi-value">14.58 <span style="font-size:12px; font-weight:600;">ج.م</span></div>
+            <div class="kpi-caption">معدل تنافسي في قطاع التدريب</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">إجمالي الوصول الفريد</div>
+            <div class="kpi-value">124,442</div>
+            <div class="kpi-caption">محاسب ومهتم مستهدف</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">إجمالي مرات الظهور</div>
+            <div class="kpi-value">333,442</div>
+            <div class="kpi-caption">معدل تكرار (Frequency) 2.68</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">معدل النقر الإجمالي (CTR)</div>
+            <div class="kpi-value">3.44%</div>
+            <div class="kpi-caption">2,022 نقرة للتواصل</div>
+        </div>
+    </div>
+
+    <!-- Comparative Table -->
+    <div class="section-label">جدول مقارنة أداء الحملات والكورسات</div>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40px; text-align: center;">#</th>
+                    <th>الحملة / الكورس</th>
+                    <th>نوع الإعلان والمجموعة</th>
+                    <th>المبلغ المنفق</th>
+                    <th>الرسائل</th>
+                    <th>تكلفة الرسالة (CPR)</th>
+                    <th>نسبة النقر (CTR)</th>
+                    <th>الحالة والتقييم</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;"><span class="rank-badge rank-top">1</span></td>
+                    <td><span class="c-name">كورس أودو (Odoo Course)</span></td>
+                    <td><span class="c-set">odoo course (رسائل مباشرة)</span></td>
+                    <td class="num-cell">1,411.25 ج.م</td>
+                    <td class="num-cell"><strong>183</strong></td>
+                    <td class="num-cell"><span class="cpr-best">7.71 ج.م</span></td>
+                    <td class="num-cell">3.18%</td>
+                    <td><span class="pill pill-success">الأعلى كفاءة ومبيعات</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><span class="rank-badge rank-top">2</span></td>
+                    <td><span class="c-name">عرض الباقة الشاملة (All in One)</span></td>
+                    <td><span class="c-set">all in one (عرض ترويجي)</span></td>
+                    <td class="num-cell">562.66 ج.م</td>
+                    <td class="num-cell"><strong>62</strong></td>
+                    <td class="num-cell"><span class="cpr-best">9.08 ج.م</span></td>
+                    <td class="num-cell">3.91%</td>
+                    <td><span class="pill pill-success">كفاءة تسويقية ممتازة</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><span class="rank-badge rank-top">3</span></td>
+                    <td><span class="c-name">فيديو كورس الضرائب (الحالي)</span></td>
+                    <td><span class="c-set">tax video (New Sales)</span></td>
+                    <td class="num-cell">2,055.96 ج.م</td>
+                    <td class="num-cell"><strong>153</strong></td>
+                    <td class="num-cell"><strong>13.44 ج.م</strong></td>
+                    <td class="num-cell">3.07%</td>
+                    <td><span class="pill pill-active">نشطة حالياً</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><span class="rank-badge">4</span></td>
+                    <td><span class="c-name">كورس الضرائب (نسخة سابقة)</span></td>
+                    <td><span class="c-set">كورس الضرايب (New Sales)</span></td>
+                    <td class="num-cell">1,379.88 ج.م</td>
+                    <td class="num-cell">92</td>
+                    <td class="num-cell">15.00 ج.م</td>
+                    <td class="num-cell">3.66%</td>
+                    <td><span class="pill pill-muted">متوقفة</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><span class="rank-badge">5</span></td>
+                    <td><span class="c-name">كورس الضرائب القديم</span></td>
+                    <td><span class="c-set">tax course (إعلان عادي)</span></td>
+                    <td class="num-cell">1,616.93 ج.م</td>
+                    <td class="num-cell">73</td>
+                    <td class="num-cell">22.15 ج.م</td>
+                    <td class="num-cell">4.07%</td>
+                    <td><span class="pill pill-muted">متوقفة</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><span class="rank-badge">6</span></td>
+                    <td><span class="c-name">كورس المراجعة (Audit Course)</span></td>
+                    <td><span class="c-set">New Sales ad</span></td>
+                    <td class="num-cell">1,613.79 ج.م</td>
+                    <td class="num-cell">62</td>
+                    <td class="num-cell">26.03 ج.م</td>
+                    <td class="num-cell">3.76%</td>
+                    <td><span class="pill pill-warning">تكلفة مرتفعة</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><span class="rank-badge">7</span></td>
+                    <td><span class="c-name">منشور المفاجأة</span></td>
+                    <td><span class="c-set">المفاجأة المرة دي...</span></td>
+                    <td class="num-cell">823.54 ج.م</td>
+                    <td class="num-cell">16</td>
+                    <td class="num-cell"><span class="cpr-high">51.47 ج.م</span></td>
+                    <td class="num-cell">1.95%</td>
+                    <td><span class="pill pill-danger">غير مجدٍ (موقوف)</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><span class="rank-badge">8</span></td>
+                    <td><span class="c-name">إعلان التفاعل العام</span></td>
+                    <td><span class="c-set">New Engagement ad</span></td>
+                    <td class="num-cell">169.88 ج.م</td>
+                    <td class="num-cell">21 تفاعل</td>
+                    <td class="num-cell">8.09 ج.م</td>
+                    <td class="num-cell">0.56%</td>
+                    <td><span class="pill pill-muted">متوقفة</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><span class="rank-badge">9</span></td>
+                    <td><span class="c-name">تجربة فيديو الضرائب الأولية</span></td>
+                    <td><span class="c-set">tax video (Deleted set)</span></td>
+                    <td class="num-cell">102.05 ج.م</td>
+                    <td class="num-cell">15</td>
+                    <td class="num-cell">6.80 ج.م</td>
+                    <td class="num-cell">5.29%</td>
+                    <td><span class="pill pill-muted">مؤرشفة</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Message Volume Breakdown -->
+    <div class="distribution-box">
+        <div class="dist-title">توزيع الرسائل التراكمي حسب الكورسات (إجمالي 656 رسالة)</div>
+        <div class="dist-item">
+            <div class="dist-header">
+                <span>كورس أودو (Odoo)</span>
+                <strong>183 رسالة (28%)</strong>
+            </div>
+            <div class="dist-bar-wrapper">
+                <div class="dist-bar" style="width: 28%; background-color: #2563eb;"></div>
+            </div>
+        </div>
+        <div class="dist-item">
+            <div class="dist-header">
+                <span>فيديو كورس الضرائب (الحملة الحالية والنسخ السابقة)</span>
+                <strong>333 رسالة (51%)</strong>
+            </div>
+            <div class="dist-bar-wrapper">
+                <div class="dist-bar" style="width: 51%; background-color: #059669;"></div>
+            </div>
+        </div>
+        <div class="dist-item">
+            <div class="dist-header">
+                <span>عرض الباقة الشاملة (All in One)</span>
+                <strong>62 رسالة (9.5%)</strong>
+            </div>
+            <div class="dist-bar-wrapper">
+                <div class="dist-bar" style="width: 9.5%; background-color: #7c3aed;"></div>
+            </div>
+        </div>
+        <div class="dist-item">
+            <div class="dist-header">
+                <span>كورس المراجعة (Audit)</span>
+                <strong>62 رسالة (9.5%)</strong>
+            </div>
+            <div class="dist-bar-wrapper">
+                <div class="dist-bar" style="width: 9.5%; background-color: #d97706;"></div>
+            </div>
+        </div>
+        <div class="dist-item">
+            <div class="dist-header">
+                <span>المنشورات التفاعلية وحملات المفاجأة</span>
+                <strong>16 رسالة (2%)</strong>
+            </div>
+            <div class="dist-bar-wrapper">
+                <div class="dist-bar" style="width: 2%; background-color: #94a3b8;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Executive Insights -->
+    <div class="section-label">التحليل التفصيلي والاستنتاجات الاستراتيجية</div>
+    <div class="analysis-grid">
+        <div class="analysis-card highlight">
+            <div class="analysis-card-title">
+                <span>1. الحصان الرابح: كورس أودو (Odoo)</span>
+                <span class="tag" style="background:#eff6ff; color:#1d4ed8;">الأعلى عائداً</span>
+            </div>
+            <p class="analysis-text">
+                حقق أعلى عدد استفسارات (183 رسالة) بأقل تكلفة على الإطلاق (7.71 ج.م للرسالة) من ميزانية قدرها 1,411 ج.م فقط. يعكس ذلك طلباً سوقياً حقيقياً ومتزايداً على مهارات أنظمة الـ ERP بين المحاسبين والشركات.
+            </p>
+        </div>
+
+        <div class="analysis-card">
+            <div class="analysis-card-title">
+                <span>2. أثر الفيديو في تخفيض التكلفة</span>
+                <span class="tag" style="background:#ecfdf5; color:#059669;">توفير 40%</span>
+            </div>
+            <p class="analysis-text">
+                بمقارنة حملة الضرائب المصورة السابقة (22.15 ج.م للرسالة) بحملة الفيديو الحالية (13.44 ج.م للرسالة)، أثبتت صيغة الفيديو قدرتها على خفض تكلفة الاستحواذ بنسبة تقارب 40% وتحقيق 168 رسالة مباشرة بكفاءة عالية.
+            </p>
+        </div>
+
+        <div class="analysis-card">
+            <div class="analysis-card-title">
+                <span>3. نموذج الباقات المجمعة (All in One)</span>
+                <span class="tag" style="background:#f5f3ff; color:#7c3aed;">قيمة مضافة</span>
+            </div>
+            <p class="analysis-text">
+                أظهرت النتائج جاذبية واضحة لصيغة العرض المتكامل بتكلفة 9.08 ج.م للرسالة وإجمالي 62 رسالة بميزانية 562 ج.م فقط، حيث تمنح الباقة العميل انطباعاً بالقيمة المضاعفة مقابل السعر.
+            </p>
+        </div>
+
+        <div class="analysis-card">
+            <div class="analysis-card-title">
+                <span>4. فرص تفادي الهدر المالي</span>
+                <span class="tag" style="background:#fef2f2; color:#dc2626;">تحسين الاستهداف</span>
+            </div>
+            <p class="analysis-text">
+                سجل إعلان "المفاجأة" تكلفة مرتفعة جداً (51.47 ج.م للرسالة) نتيجة غياب العرض الواضح للجمهور المهني. كما سجل كورس المراجعة 26.03 ج.م، مما يستلزم ربط المحتوى الإعلاني بالفرص الوظيفية بمكاتب المحاسبة.
+            </p>
+        </div>
+    </div>
+
+    <!-- Action Plan -->
+    <div class="section-label">خطة العمل والتوصيات للفترة القادمة (Action Plan)</div>
+    <div class="plan-box">
+        <div class="plan-item">
+            <div class="plan-item-title">أولاً: إعادة توجيه الميزانيات التسويقية (Budget Re-allocation)</div>
+            <ul class="plan-item-list">
+                <li><strong>استئناف حملة كورس Odoo:</strong> إعادة تشغيل الحملة بميزانية يومية مستمرة بين 250 إلى 300 ج.م للاستفادة من تدني تكلفة الاكتساب.</li>
+                <li><strong>إطلاق حملة مخصصة لعرض All in One:</strong> فصل الباقة في حملة مستقلة مع زيادة تدريجية في الإنفاق للاستفادة من قوتها البيعية.</li>
+                <li><strong>متابعة حملة فيديو الضرائب الحالية:</strong> الإبقاء على الحملة النشطة مع مراقبة مؤشر التكرار (Frequency) لضمان عدم تجاوزه 2.5.</li>
+            </ul>
+        </div>
+
+        <div class="plan-item">
+            <div class="plan-item-title">ثانياً: استراتيجية المحتوى الإعلاني (Video-First Strategy)</div>
+            <ul class="plan-item-list">
+                <li><strong>إنتاج فيديوهات قصيرة لكورس أودو والمراجعة:</strong> اعتماد فيديوهات مدتها 60 إلى 90 ثانية يقدم فيها المحاضر حلاً لمشكلة عملية واقعية من المنهج.</li>
+                <li><strong>الابتعاد عن المنشورات المبهمة:</strong> التوقف التام عن إعلانات المسابقات والمفاجآت غير المحددة، والتركيز على القيمة المهنية، الشهادات، والمشاريع التطبيقية.</li>
+            </ul>
+        </div>
+
+        <div class="plan-item">
+            <div class="plan-item-title">ثالثاً: تحسين دورة المبيعات والإغلاق (Sales & CRM Conversion)</div>
+            <ul class="plan-item-list">
+                <li><strong>قياس معدل التحويل الفعلي (Conversion Rate):</strong> حصر نسبة المشتركين المسجلين فعلياً من إجمالي 656 استفساراً لتقييم كفاءة فريق المبيعات.</li>
+                <li><strong>إعادة استهداف الاستفسارات السابقة (Retargeting):</strong> التواصل مع كافة العملاء المحتملين الذين لم يكملوا الشراء بخصوص باقة All in One وتسهيلات السداد.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="report-footer">
+        <div>تم استخراج وتدقيق البيانات من منصة Meta Ads Manager</div>
+        <div>Community of Accountants © 2026 | All Rights Reserved</div>
+    </footer>
+</div>
+
+</body>
+</html>
