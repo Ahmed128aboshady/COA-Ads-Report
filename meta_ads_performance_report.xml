@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MetaAdsReport>
+    <Metadata>
+        <ReportTitle>Meta Ads Performance Report</ReportTitle>
+        <PageName>Community of Accountants</PageName>
+        <DateRange>
+            <StartDate>2026-09-01</StartDate>
+            <EndDate>2026-10-28</EndDate>
+        </DateRange>
+        <Currency>EGP</Currency>
+        <PrimaryObjective>Messaging conversations started</PrimaryObjective>
+    </Metadata>
+
+    <ExecutiveSummary>
+        <TotalSpend>9735.94</TotalSpend>
+        <TotalResults unit="conversations">656</TotalResults>
+        <AverageCostPerResult>14.58</AverageCostPerResult>
+        <TotalReach>124442</TotalReach>
+        <TotalImpressions>333442</TotalImpressions>
+        <AverageFrequency>2.68</AverageFrequency>
+        <TotalLinkClicks>2022</TotalLinkClicks>
+        <TotalAllClicks>11473</TotalAllClicks>
+        <AverageCTR>3.44</AverageCTR>
+    </ExecutiveSummary>
+
+    <Campaigns>
+        <Campaign id="1">
+            <Name>course odoo</Name>
+            <AdSetName>course odoo</AdSetName>
+            <AdName>odoo course</AdName>
+            <Status>inactive</Status>
+            <Spend>1411.25</Spend>
+            <Results>183</Results>
+            <CostPerResult>7.71</CostPerResult>
+            <Reach>29080</Reach>
+            <Impressions>52968</Impressions>
+            <Frequency>1.82</Frequency>
+            <LinkClicks>441</LinkClicks>
+            <CTR>3.18</CTR>
+            <Evaluation>Top Performer - Lowest CPR</Evaluation>
+        </Campaign>
+
+        <Campaign id="2">
+            <Name>New Sales campaign</Name>
+            <AdSetName>all in one</AdSetName>
+            <AdName>New Sales ad</AdName>
+            <Status>inactive</Status>
+            <Spend>562.66</Spend>
+            <Results>62</Results>
+            <CostPerResult>9.08</CostPerResult>
+            <Reach>12401</Reach>
+            <Impressions>19252</Impressions>
+            <Frequency>1.55</Frequency>
+            <LinkClicks>187</LinkClicks>
+            <CTR>3.91</CTR>
+            <Evaluation>High Efficiency - Strong Offer</Evaluation>
+        </Campaign>
+
+        <Campaign id="3">
+            <Name>video tax ccourse</Name>
+            <AdSetName>New Sales Ad Set</AdSetName>
+            <AdName>tax video</AdName>
+            <Status>active</Status>
+            <Spend>2055.96</Spend>
+            <Results>153</Results>
+            <CostPerResult>13.44</CostPerResult>
+            <Reach>46687</Reach>
+            <Impressions>80252</Impressions>
+            <Frequency>1.72</Frequency>
+            <LinkClicks>502</LinkClicks>
+            <CTR>3.07</CTR>
+            <Evaluation>Current Active Campaign - Consistent Volume</Evaluation>
+        </Campaign>
+
+        <Campaign id="4">
+            <Name>New Sales campaign</Name>
+            <AdSetName>كورس الضرايب</AdSetName>
+            <AdName>New Sales ad</AdName>
+            <Status>inactive</Status>
+            <Spend>1379.88</Spend>
+            <Results>92</Results>
+            <CostPerResult>15.00</CostPerResult>
+            <Reach>19624</Reach>
+            <Impressions>38936</Impressions>
+            <Frequency>1.98</Frequency>
+            <LinkClicks>229</LinkClicks>
+            <CTR>3.66</CTR>
+            <Evaluation>Moderate Performance</Evaluation>
+        </Campaign>
+
+        <Campaign id="5">
+            <Name>tax course</Name>
+            <AdSetName>tax course</AdSetName>
+            <AdName>tax course</AdName>
+            <Status>inactive</Status>
+            <Spend>1616.93</Spend>
+            <Results>73</Results>
+            <CostPerResult>22.15</CostPerResult>
+            <Reach>35443</Reach>
+            <Impressions>62121</Impressions>
+            <Frequency>1.75</Frequency>
+            <LinkClicks>302</LinkClicks>
+            <CTR>4.07</CTR>
+            <Evaluation>Legacy Static Ad - High Cost vs Video</Evaluation>
+        </Campaign>
+
+        <Campaign id="6">
+            <Name>audit course</Name>
+            <AdSetName>audit course</AdSetName>
+            <AdName>New Sales ad</AdName>
+            <Status>inactive</Status>
+            <Spend>1613.79</Spend>
+            <Results>62</Results>
+            <CostPerResult>26.03</CostPerResult>
+            <Reach>31657</Reach>
+            <Impressions>54276</Impressions>
+            <Frequency>1.71</Frequency>
+            <LinkClicks>252</LinkClicks>
+            <CTR>3.76</CTR>
+            <Evaluation>High CPR - Requires Creative &amp; Hook Revision</Evaluation>
+        </Campaign>
+
+        <Campaign id="7">
+            <Name>Post: المفاجأة المرة دي… إنتوا اللي هتختاروا!</Name>
+            <AdSetName>Post: المفاجأة المرة دي… إنتوا اللي هتختاروا!</AdSetName>
+            <AdName>Post: المفاجأة المرة دي… إنتوا اللي هتختاروا!</AdName>
+            <Status>inactive</Status>
+            <Spend>823.54</Spend>
+            <Results>16</Results>
+            <CostPerResult>51.47</CostPerResult>
+            <Reach>9245</Reach>
+            <Impressions>18194</Impressions>
+            <Frequency>1.97</Frequency>
+            <LinkClicks>75</LinkClicks>
+            <CTR>1.95</CTR>
+            <Evaluation>Poor Performance - Budget Inefficiency</Evaluation>
+        </Campaign>
+
+        <Campaign id="8">
+            <Name>video tax ccourse (Test)</Name>
+            <AdSetName>New Sales ad set (archived)</AdSetName>
+            <AdName>tax video</AdName>
+            <Status>archived</Status>
+            <Spend>102.05</Spend>
+            <Results>15</Results>
+            <CostPerResult>6.80</CostPerResult>
+            <Reach>2808</Reach>
+            <Impressions>3895</Impressions>
+            <Frequency>1.39</Frequency>
+            <LinkClicks>33</LinkClicks>
+            <CTR>5.29</CTR>
+            <Evaluation>Initial Video Validation Test</Evaluation>
+        </Campaign>
+
+        <Campaign id="9">
+            <Name>New Engagement campaign</Name>
+            <AdSetName>New Engagement ad set</AdSetName>
+            <AdName>New Engagement ad</AdName>
+            <Status>inactive</Status>
+            <Spend>169.88</Spend>
+            <Results>21</Results>
+            <CostPerResult>8.09</CostPerResult>
+            <Reach>3102</Reach>
+            <Impressions>3548</Impressions>
+            <Frequency>1.14</Frequency>
+            <LinkClicks>1</LinkClicks>
+            <CTR>0.56</CTR>
+            <Evaluation>Engagement Only</Evaluation>
+        </Campaign>
+    </Campaigns>
+
+    <KeyInsights>
+        <Insight id="1">
+            <Subject>Odoo Course Performance</Subject>
+            <Description>Delivered the highest volume of messaging conversations (183) at the lowest cost per result (7.71 EGP), indicating strong market demand for ERP accounting training.</Description>
+        </Insight>
+        <Insight id="2">
+            <Subject>Video vs Static Ad Creative</Subject>
+            <Description>Video creatives reduced the cost per messaging result by approximately 39.3% in the tax course (13.44 EGP vs 22.15 EGP for static ads).</Description>
+        </Insight>
+        <Insight id="3">
+            <Subject>Bundle Offer Viability</Subject>
+            <Description>The All-in-One bundle ad set proved cost-effective at 9.08 EGP per result, demonstrating high perceived value among target accountants.</Description>
+        </Insight>
+        <Insight id="4">
+            <Subject>Budget Drain</Subject>
+            <Description>The mystery/engagement promo post resulted in an excessive CPR of 51.47 EGP and low CTR (1.95%), failing to generate cost-effective qualified inquiries.</Description>
+        </Insight>
+    </KeyInsights>
+
+    <StrategicRecommendations>
+        <Recommendation priority="High">
+            <Action>Reactivate Odoo Campaign</Action>
+            <Details>Relaunch the Odoo course campaign with an allocated daily budget of 250 to 300 EGP to maximize low-cost lead generation.</Details>
+        </Recommendation>
+        <Recommendation priority="High">
+            <Action>Expand Video Creatives</Action>
+            <Details>Produce short video reels (60-90 seconds) for the Audit and Odoo courses, replicating the success observed in the Tax video campaign.</Details>
+        </Recommendation>
+        <Recommendation priority="Medium">
+            <Action>Scale All-in-One Offer</Action>
+            <Details>Position the All-in-One package as an entry or upsell offer to leverage its low CPR (9.08 EGP).</Details>
+        </Recommendation>
+        <Recommendation priority="Medium">
+            <Action>Refine Audit Course Angle</Action>
+            <Details>Revise ad copy and value proposition for the audit course to address office accreditation, career progression, and practical case studies to lower the 26.03 EGP CPR.</Details>
+        </Recommendation>
+    </StrategicRecommendations>
+</MetaAdsReport>
